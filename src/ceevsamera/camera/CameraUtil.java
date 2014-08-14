@@ -5,6 +5,8 @@
  */
 package ceevsamera.camera;
 
+import ceevsamera.ConnectionLauncher;
+
 /**
  *
  * @author Administrator
@@ -13,7 +15,7 @@ public class CameraUtil {
 
     //摄像头参数
     private boolean on_off = false;    //摄像头开关
-    private byte[] serverIP = {(byte) 125, (byte) 84, (byte) 226, (byte) 236};
+    private byte[] serverIP;
 //        private byte[] serverIP = {(byte) 61, (byte) 161, (byte) 127, (byte) 173};   //windows server
 //    private byte[] serverIP = {(byte) 125, (byte) 84, (byte) 225, (byte) 133};   //entity server
 //    private byte[] serverIP = {(byte) 192, (byte) 168, (byte) 102, (byte) 87};
@@ -22,6 +24,10 @@ public class CameraUtil {
     private int imgType;      //拍照图片分辨率
 
     private int tag = 0;
+
+    public CameraUtil() {
+        serverIP = ConnectionLauncher.polleIPAddress;
+    }
 
     public int getTag() {
         return tag;
