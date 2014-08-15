@@ -18,8 +18,11 @@ import java.util.logging.Logger;
 public class ConnectionLauncher {
 
     public static int tag = 4, startNo = 0, endNo = 4000;
-    public static byte[] polleIPAddress= {(byte) 192, (byte) 168, (byte) 102, (byte) 87};
+    public static byte[] polleIPAddress= {(byte) 192, (byte) 168, (byte) 102, (byte) 88};
 
+    
+    
+    
     /**
      * @param args the command line argumentss
      */
@@ -33,12 +36,13 @@ public class ConnectionLauncher {
                 polleIPAddress=StrIPToByteArr(polleIPAddressStr);
             }
         }
-
+        
         CameraUtil camearUtil;
         long connect_StartTime = System.currentTimeMillis();   //获取开始时间
         for (int i = startNo; i <= endNo; i++) {
             Camera camera = new Camera();
             camearUtil = new CameraUtil();
+            camearUtil.setServerIP(polleIPAddress);
             camearUtil.setTag(i);
             camearUtil.initDevSeq(tag, i);
             camera.setCameraUtil(camearUtil);

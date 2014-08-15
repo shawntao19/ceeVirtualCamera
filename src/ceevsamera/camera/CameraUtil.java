@@ -25,10 +25,6 @@ public class CameraUtil {
 
     private int tag = 0;
 
-    public CameraUtil() {
-        serverIP = ConnectionLauncher.polleIPAddress;
-    }
-
     public int getTag() {
         return tag;
     }
