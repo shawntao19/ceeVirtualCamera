@@ -25,6 +25,7 @@ public class Camera {
     public static Map<String, PicSendTask> sendPicTaskContainer = new HashMap<>();
 
     public static int connectedCounter = 0, sendPicCounter = 0;
+    public static int sendPicSum = 0;
 
     private CameraUtil cameraUtil = new CameraUtil();
     private CameraTask cameraTask;
@@ -32,20 +33,21 @@ public class Camera {
     private Timer hearbeatTimer = null;
     Date nextRequestDate;
 
-    
     public synchronized static void addCameraTask(String devSeq, CameraTask cameraTask) {
         cameraTaskContainer.put(devSeq, cameraTask);
         connectedCounter = cameraTaskContainer.size();
         Logger.getLogger(Camera.class.getSimpleName()).
-                log(Level.INFO, "当前连接数：" + connectedCounter + "    tag:" + cameraTask.getCameraUtil().getTag()+"    devSeq:"+devSeq);
+                log(Level.INFO, "当前连接数：" + connectedCounter + "    tag:" + cameraTask.getCameraUtil().getTag() + "    devSeq:" + devSeq);
     }
 
     public synchronized static void addSendPicTask(String devSeq, PicSendTask picSendTask) {
         sendPicTaskContainer.put(devSeq, picSendTask);
 
         sendPicCounter = sendPicTaskContainer.size();
+
+        sendPicSum++;
         Logger.getLogger(Camera.class.getSimpleName()).
-                log(Level.INFO, "已发送图片的摄像头数目：" + sendPicCounter);
+                log(Level.INFO, "已发送图片的摄像头数目：" + sendPicSum);
     }
 
     public static void deleteCameraTask(String devSeq) {

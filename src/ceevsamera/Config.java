@@ -11,5 +11,5 @@ package ceevsamera;
  * @author Administrator
  */
 public class Config {
-    public static final String serverIP="61.161.127.167";
+    public static final String serverIP="192.168.102.87";
 }

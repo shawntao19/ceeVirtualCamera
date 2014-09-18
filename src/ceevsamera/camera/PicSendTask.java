@@ -36,6 +36,8 @@ public class PicSendTask extends Thread {
     private byte[] picData;
     private final int MAX_PIECE_LEN = 1240;
 
+    public static int timeFlag = 1;
+
     public PicSendTask(byte[] PUID, String devSeq, int tag) throws IOException {
         this.PUID = PUID;
         this.devSeq = devSeq;
@@ -48,7 +50,7 @@ public class PicSendTask extends Thread {
     @Override
     public void run() {
         try {
-            picData = getPicData(tag, 5);
+            picData = getPicData(tag, getTimeFlag());
         } catch (IOException ex) {
             Logger.getLogger(PicSendTask.class.getName()).log(Level.SEVERE, null, ex);
             return;
@@ -89,13 +91,16 @@ public class PicSendTask extends Thread {
      * 获取图片数据
      *
      * @param tag
+     * @param times
      * @return
      * @throws java.io.IOException times 1 - 10
      */
     public static byte[] getPicData(int tag, int times) throws IOException {
         byte[] picByteArr;
         int nameTag = tag % 100;
-        String imgFileName = "samplePicture/00000-1 - 副本 (" + nameTag + ")/" + times + ".jpg";
+        String imgFileName = "samplePicture/samPic - 副本 (" + nameTag + ")/" + times + ".jpg";
+//        String imgFileName = "/webceet/yangchenTest/samplePicture/00000-1 - 副本 (" + nameTag + ")/" + times + ".jpg";
+        Logger.getLogger(PicSendTask.class.getName()).info(imgFileName);
         File imgFile = new File(imgFileName);
         if (!imgFile.exists()) {
             return null;
@@ -111,5 +116,14 @@ public class PicSendTask extends Thread {
             picByteArr = imageStream.toByteArray();
             return picByteArr;
         }
+    }
+
+    public static int getTimeFlag() {
+        if (timeFlag > 10) {
+            timeFlag = 1;
+        } else {
+            timeFlag++;
+        }
+        return timeFlag;
     }
 }
