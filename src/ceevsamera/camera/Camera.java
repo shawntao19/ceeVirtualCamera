@@ -21,6 +21,8 @@ import java.util.logging.Logger;
  */
 public class Camera {
 
+    public static final Logger lg = Logger.getLogger(Camera.class.getSimpleName());
+
     public static Map<String, CameraTask> cameraTaskContainer = new HashMap<>();
     public static Map<String, PicSendTask> sendPicTaskContainer = new HashMap<>();
 
@@ -36,8 +38,7 @@ public class Camera {
     public synchronized static void addCameraTask(String devSeq, CameraTask cameraTask) {
         cameraTaskContainer.put(devSeq, cameraTask);
         connectedCounter = cameraTaskContainer.size();
-        Logger.getLogger(Camera.class.getSimpleName()).
-                log(Level.INFO, "当前连接数：" + connectedCounter + "    tag:" + cameraTask.getCameraUtil().getTag() + "    devSeq:" + devSeq);
+        lg.log(Level.INFO, "当前连接数：" + connectedCounter + "    tag:" + cameraTask.getCameraUtil().getTag() + "    devSeq:" + devSeq);
     }
 
     public synchronized static void addSendPicTask(String devSeq, PicSendTask picSendTask) {
@@ -46,13 +47,12 @@ public class Camera {
         sendPicCounter = sendPicTaskContainer.size();
 
         sendPicSum++;
-        Logger.getLogger(Camera.class.getSimpleName()).
-                log(Level.INFO, "已发送图片的摄像头数目：" + sendPicSum);
+        lg.log(Level.INFO, "已发送图片的摄像头数目：" + sendPicSum);
     }
 
     public static void deleteCameraTask(String devSeq) {
         cameraTaskContainer.remove(devSeq);
-        System.out.println("断开连接：" + devSeq + "  现有连接数：" + cameraTaskContainer.size());
+        lg.log(Level.INFO, "断开连接：" + devSeq + "  现有连接数：" + cameraTaskContainer.size());
     }
 
     public void setCameraUtil(CameraUtil cameraUtil) {
