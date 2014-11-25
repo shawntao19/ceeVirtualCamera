@@ -100,7 +100,6 @@ public class CameraTask {
             try {
                 if (proLoginReq() == GlobalVar.SUCCESSED) {
                     Camera.addCameraTask(devSeqStr, this);
-
                     receivePacket();
                 }
             } catch (IOException ex) {

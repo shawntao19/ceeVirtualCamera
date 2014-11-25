@@ -95,10 +95,15 @@ public class PicSendTask extends Thread {
      * @return
      * @throws java.io.IOException times 1 - 10
      */
+    public static int aaa = 1;
+
     public static byte[] getPicData(int tag, int times) throws IOException {
         byte[] picByteArr;
         int nameTag = tag % 100;
-        String imgFileName = "samplePicture/samPic - 副本 (" + nameTag + ")/" + times + ".jpg";
+
+        String imgFileName = "samplePicture/test/" + aaa + ".jpg";
+        aaa++;
+//        String imgFileName = "samplePicture/samPic - 副本 (" + nameTag + ")/" + times + ".jpg";
 //        String imgFileName = "/webceet/yangchenTest/samplePicture/00000-1 - 副本 (" + nameTag + ")/" + times + ".jpg";
         Logger.getLogger(PicSendTask.class.getName()).info(imgFileName);
         File imgFile = new File(imgFileName);
