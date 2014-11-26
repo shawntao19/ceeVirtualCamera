@@ -26,10 +26,18 @@ public class ConnectionLauncher {
         CameraUtil camearUtil;
         long connect_StartTime = System.currentTimeMillis();   //获取开始时间
 
-        String[] devSeqs = new String[3];
-        devSeqs[0] = "00:90:B0:1A:D5:F0";
-        devSeqs[1] = "00:90:B0:1A:D7:A1";
-        devSeqs[2] = "00:90:B0:1A:D7:A2";
+        String[] devSeqs = new String[10];
+        devSeqs[0] = "04:00:00:00:00:01";
+        devSeqs[1] = "04:00:00:00:00:02";
+        devSeqs[2] = "04:00:00:00:00:03";
+        devSeqs[3] = "04:00:00:00:00:04";
+        devSeqs[4] = "04:00:00:00:00:05";
+        devSeqs[5] = "04:00:00:00:00:06";
+        devSeqs[6] = "04:00:00:00:00:07";
+        devSeqs[7] = "04:00:00:00:00:08";
+        devSeqs[8] = "04:00:00:00:00:09";
+        devSeqs[9] = "04:00:00:00:00:0A";
+
 
         for (int i = 0; i < devSeqs.length; i++) {
             Camera camera = new Camera();
